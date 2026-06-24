@@ -1,0 +1,55 @@
+# Multi-Disease Early Screening Using Deep Multi-Task Learning: A Causal DAG Approach in Critical Care
+
+**Authors:** Vishvambar Ramesh Udavant, Ish Prafull Chaniyara, Sagar Shahgond  
+**Faculty Guide:** Dr. Ranjana Kale  
+**Institution:** Department of Computer Science & Engineering
+
+---
+
+## Abstract
+In Intensive Care Units (ICUs), patients frequently present with overlapping physiological deterioration, leading to multiple organ dysfunction syndromes. Traditional clinical decision support systems model diseases independently, ignoring critical comorbidity interactions and resulting in severe alarm fatigue due to high false-positive rates. This paper proposes a novel deep Multi-Task Learning (MTL) architecture using a PyTorch Directed Acyclic Graph (DAG) that respects the clinical arrow of time. By passing dense latent representations of chronic baselines (Diabetes, Congestive Heart Failure) directly into downstream acute complication branches (Sepsis, Acute Kidney Injury) and utilizing a strict Stop-Gradient backpropagation technique, we effectively model physiological risk cascades. Our findings on 52,378 patients from the MIMIC-IV database demonstrate that while baseline models for chronic conditions fail stringent clinical viability thresholds due to missing historical Electronic Health Record (EHR) data, the shared contextual representations significantly boost the prediction viability of the downstream AKI model, achieving a precision of 0.724 at 0.718 recall. We incorporate Captum Integrated Gradients to replace black-box opacity with native, mathematically rigorous feature explainability.
+
+## 1. Introduction
+The advent of Electronic Health Records (EHRs) has enabled data-driven prognostic modeling in critical care. However, existing methodologies frequently employ disjoint binary classifiers (e.g., individual XGBoost models or independent neural network heads) to predict concurrent diseases like Sepsis or Acute Kidney Injury (AKI). This "Multi-Task Illusion" fundamentally fails to capture the comorbidity cascade: a patient’s baseline metabolic disorder dictates their physiological resilience during an acute infection, which subsequently drives secondary organ failure.
+
+This study introduces a Deep Multi-Task Learning framework engineered to explicitly pass downstream physiological context. We address two primary challenges: (1) **Catastrophic Interference**, where massive gradients from acute conditions destroy the weights of early chronic predictors, and (2) **Class Imbalance**, which severely biases traditional loss functions toward the negative class.
+
+## 2. Methodology
+
+### A. Dataset and Preprocessing
+We utilized the MIMIC-IV database, extracting a cohort of 52,378 adult ICU patients. We engineered 17 interpretable physiological features, including 4 demographics/lab values and 13 vital sign volatility metrics (e.g., `heart_rate_range`). Missing values were resolved via median imputation, followed by standard scaling to normalize variance for neural network convergence.
+
+### B. Causal DAG Architecture
+To model the temporal nature of disease, we structured the PyTorch `nn.Module` as a Directed Acyclic Graph. A shared 64-dimensional encoder trunk extracts global physiological embeddings. The network then branches sequentially: `Diabetes → CHF → Sepsis → AKI`. Rather than passing 1D binary logits, the network cascades dense 32-D latent hidden states.
+
+### C. The Stop-Gradient Solution
+To prevent gradient hijacking—where the large error gradients of AKI backpropagate through the entire graph and overwrite the Diabetes head's learned weights—we applied `torch.Tensor.detach()` on the lateral hidden states. The downstream model treats the upstream state as a fixed informational prior, allowing independent Focal Loss optimization at each head while the shared trunk updates jointly.
+
+### D. Static Focal Loss
+We implemented Focal Loss with $\gamma=2$ to dynamically scale the cross-entropy loss, aggressively down-weighting easy, well-classified negative examples and focusing the optimizer on hard positive cases.
+
+## 3. Results and Discussion
+
+### A. Threshold Calibration and Clinical Viability
+Models were evaluated against a strict clinical safety net to prevent alarm fatigue: maximizing Precision subject to Recall $\ge$ 0.50, with an absolute Precision floor of 0.65.
+
+| Disease | Precision | Recall | F1-Score | Clinical Status |
+|---|---|---|---|---|
+| Diabetes | 0.374 | 0.674 | 0.481 | Unviable |
+| CHF | 0.403 | 0.667 | 0.503 | Unviable |
+| Sepsis | 0.411 | 0.578 | 0.480 | Unviable |
+| **AKI** | **0.724** | **0.718** | **0.721** | **Viable** |
+
+### B. The Reality of Missing Signal
+Our rigorously honest evaluation reveals that the 17 core physiological features lack the required historical EHR signal (e.g., prior HbA1c labs) to predict Diabetes or CHF with clinical viability. A neural network cannot invent signal from noise. However, the architecture proved its immense value where signal was present: the AKI model's precision reached 0.724 by leveraging the dense latent context flowing from the upstream chronic heads.
+
+### C. Explainability
+Using Captum `IntegratedGradients`, we successfully traced feature attributions from the shared trunk to the AKI output, providing clinicians with exact mathematical visualizations of physiological risk drivers.
+
+## 4. Conclusion and Future Work
+We successfully engineered a deep Multi-Task Learning DAG that mathematically mimics clinical comorbidity cascades. While the shared representations significantly boosted acute organ failure prediction, V1 establishes a clear boundary on the limits of current features. V2 of this model will integrate raw time-series data and historical lab results to cross the viability threshold for all modeled diseases.
+
+## 5. References
+[1] Johnson, A., et al. "MIMIC-IV, a freely accessible electronic health record dataset." *Scientific Data*, 2023.  
+[2] Lin, T. Y., et al. "Focal Loss for Dense Object Detection." *ICCV*, 2017.  
+[3] Sundararajan, M., et al. "Axiomatic Attribution for Deep Networks." *ICML*, 2017.
