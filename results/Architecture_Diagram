@@ -1,0 +1,48 @@
+// DAG MTL Architecture
+digraph {
+	dpi=300 nodesep=0.8 rankdir=TB ranksep=1.0
+	node [fontname=Arial fontsize=12]
+	edge [fontname=Arial fontsize=10]
+	Input [label="Input Features
+(17-D)" fillcolor="#EAEAEA" shape=box style=filled width=2]
+	Trunk [label="Shared Global Trunk
+(64-D)" fillcolor="#D0E4F5" shape=box style=filled width=2]
+	Diab [label="Diabetes Head
+(32-D)" fillcolor="#E2F0D9" shape=box style=filled]
+	CHF [label="CHF Head
+(32-D)" fillcolor="#E2F0D9" shape=box style=filled]
+	Sepsis [label="Sepsis Head
+(32-D)" fillcolor="#E2F0D9" shape=box style=filled]
+	AKI [label="AKI Head
+(32-D)" fillcolor="#E2F0D9" shape=box style=filled]
+	OutDiab [label="Diabetes
+Logit" fillcolor=white shape=ellipse style=filled]
+	OutCHF [label="CHF
+Logit" fillcolor=white shape=ellipse style=filled]
+	OutSepsis [label="Sepsis
+Logit" fillcolor=white shape=ellipse style=filled]
+	OutAKI [label="AKI
+Logit" fillcolor=white shape=ellipse style=filled]
+	Input -> Trunk
+	Trunk -> Diab
+	Trunk -> CHF
+	Trunk -> Sepsis
+	Trunk -> AKI
+	Diab -> OutDiab
+	CHF -> OutCHF
+	Sepsis -> OutSepsis
+	AKI -> OutAKI
+	Diab -> CHF [label=" Stop-Gradient
+(tensor.detach)" color="#FF6B6B" constraint=false fontcolor="#D32F2F" style=dashed]
+	CHF -> Sepsis [label=" Stop-Gradient
+(tensor.detach)" color="#FF6B6B" constraint=false fontcolor="#D32F2F" style=dashed]
+	Sepsis -> AKI [label=" Stop-Gradient
+(tensor.detach)" color="#FF6B6B" constraint=false fontcolor="#D32F2F" style=dashed]
+	{
+		rank=same
+		Diab
+		CHF
+		Sepsis
+		AKI
+	}
+}

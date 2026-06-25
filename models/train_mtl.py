@@ -7,7 +7,7 @@ from torch.utils.data import Dataset, DataLoader
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
-from sklearn.metrics import precision_score, recall_score, f1_score
+from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_score, average_precision_score
 from mtl_model import DAG_MTL_Model
 from captum.attr import IntegratedGradients
 import matplotlib.pyplot as plt
@@ -126,6 +126,9 @@ for i, disease in enumerate(target_cols):
     y_t = y_true[:, i]
     y_p = y_prob[:, i]
     
+    roc_auc = roc_auc_score(y_t, y_p)
+    pr_auc = average_precision_score(y_t, y_p)
+    
     valid_thresholds = []
     for t in thresholds:
         y_pred = (y_p >= t).astype(int)
@@ -147,7 +150,7 @@ for i, disease in enumerate(target_cols):
             best = max(valid_thresholds, key=lambda x: x['f1'])
             note = "Completely Unviable"
             
-    print(f"{disease:15} | {note:35} | Threshold: {best['t']:.2f} | Precision: {best['p']:.3f} | Recall: {best['r']:.3f} | F1: {best['f1']:.3f}")
+    print(f"{disease:15} | ROC-AUC: {roc_auc:.3f} | PR-AUC: {pr_auc:.3f} | {note:25} | Threshold: {best['t']:.2f} | Precision: {best['p']:.3f} | Recall: {best['r']:.3f} | F1: {best['f1']:.3f}")
 
 # 7. Captum Explainability for AKI
 print("\nGenerating Captum IntegratedGradients for AKI...")
@@ -179,3 +182,8 @@ plt.tight_layout()
 plt.savefig("../results/Captum_Attributions_AKI.png", dpi=300)
 plt.close()
 print("Saved ../results/Captum_Attributions_AKI.png")
+
+print("Top 5 Features:")
+top_indices = np.argsort(np.abs(attributions))[::-1][:5]
+for i, idx in enumerate(top_indices):
+    print(f"Rank {i+1}: {feature_cols[idx]} ({attributions[idx]:.4f})")
