@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" width="1200" height="650" style="background-color: #fafbfc; font-family: Arial, sans-serif;">
+<defs>
+<marker id="arrow_gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#666" />
+</marker>
+<marker id="arrow_blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#1976D2" />
+</marker>
+<marker id="arrow_red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#D32F2F" />
+</marker>
+<linearGradient id="grad_xgboost" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffcc80" /><stop offset="100%" stop-color="#ff9800" /></linearGradient>
+<linearGradient id="grad_dag" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#a5d6a7" /><stop offset="100%" stop-color="#4caf50" /></linearGradient>
+<linearGradient id="grad_input" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#eeeeee" /><stop offset="100%" stop-color="#bdbdbd" /></linearGradient>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="2" dy="4" stdDeviation="4" flood-opacity="0.15"/></filter>
+</defs>
+<text x="600" y="40" text-anchor="middle" font-size="28" font-weight="bold" fill="#222">Phase 1 Evolution: Why We Switched to a PyTorch DAG</text>
+<line x1="600" y1="80" x2="600" y2="600" stroke="#ccc" stroke-width="2" stroke-dasharray="8,4"/>
+<text x="300" y="90" text-anchor="middle" font-size="22" font-weight="bold" fill="#e65100">THE PROBLEM: XGBoost Classifier Chain</text>
+<text x="300" y="115" text-anchor="middle" font-size="14" fill="#666">Individual decision trees suffering from Information Loss</text>
+<rect x="100" y="160" width="140" height="60" rx="10" ry="10" fill="url(#grad_input)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="170.0" y="180.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">Input Features</text><text x="170.0" y="200.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(17-D Vector)</text>
+<rect x="320" y="160" width="160" height="60" rx="10" ry="10" fill="url(#grad_xgboost)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="400.0" y="180.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">Diabetes Model</text><text x="400.0" y="200.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(Independent XGBoost)</text>
+<path d="M 240 190 C 290 190, 270 190, 320 190" fill="none" stroke="#666" stroke-width="3" marker-end="url(#arrow_gray)"/>
+<text x="510" y="190" text-anchor="start" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#d32f2f">► Output: 1D Probability (0 to 1)</text>
+<rect x="320" y="260" width="160" height="60" rx="10" ry="10" fill="url(#grad_xgboost)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="400.0" y="280.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">CHF Model</text><text x="400.0" y="300.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(Independent XGBoost)</text>
+<path d="M 240 190 C 290 190, 270 290, 320 290" fill="none" stroke="#666" stroke-width="3" marker-end="url(#arrow_gray)"/>
+<text x="510" y="290" text-anchor="start" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#d32f2f">► Output: 1D Probability (0 to 1)</text>
+<rect x="320" y="360" width="160" height="60" rx="10" ry="10" fill="url(#grad_xgboost)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="400.0" y="380.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">Sepsis Model</text><text x="400.0" y="400.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(Independent XGBoost)</text>
+<path d="M 240 190 C 290 190, 270 390, 320 390" fill="none" stroke="#666" stroke-width="3" marker-end="url(#arrow_gray)"/>
+<text x="510" y="390" text-anchor="start" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#d32f2f">► Output: 1D Probability (0 to 1)</text>
+<rect x="320" y="460" width="160" height="60" rx="10" ry="10" fill="url(#grad_xgboost)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="400.0" y="480.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">AKI Model</text><text x="400.0" y="500.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(Independent XGBoost)</text>
+<path d="M 240 190 C 290 190, 270 490, 320 490" fill="none" stroke="#666" stroke-width="3" marker-end="url(#arrow_gray)"/>
+<text x="510" y="490" text-anchor="start" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#d32f2f">► Output: 1D Probability (0 to 1)</text>
+<line x1="400" y1="220" x2="400" y2="260" stroke="#D32F2F" stroke-width="3" marker-end="url(#arrow_red)"/><rect x="320.0" y="225.0" width="160" height="30" fill="white" opacity="0.9" rx="5"/><text x="400.0" y="240.0" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="bold" fill="#D32F2F">1-D Binary Logit</text>
+<line x1="400" y1="320" x2="400" y2="360" stroke="#D32F2F" stroke-width="3" marker-end="url(#arrow_red)"/><rect x="320.0" y="325.0" width="160" height="30" fill="white" opacity="0.9" rx="5"/><text x="400.0" y="340.0" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="bold" fill="#D32F2F">1-D Binary Logit</text>
+<line x1="400" y1="420" x2="400" y2="460" stroke="#D32F2F" stroke-width="3" marker-end="url(#arrow_red)"/><rect x="320.0" y="425.0" width="160" height="30" fill="white" opacity="0.9" rx="5"/><text x="400.0" y="440.0" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="bold" fill="#D32F2F">1-D Binary Logit</text>
+<rect x="100" y="560" width="400" height="60" rx="10" ry="10" fill="url(#grad_input)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="300.0" y="580.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">FLAW: The Multi-Task Illusion</text><text x="300.0" y="600.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >Passing only a 1D probability loses all dense physiological context.</text>
+<text x="900" y="90" text-anchor="middle" font-size="22" font-weight="bold" fill="#1b5e20">THE SOLUTION: PyTorch DAG Network</text>
+<text x="900" y="115" text-anchor="middle" font-size="14" fill="#666">A neural network passing dense contextual states downstream</text>
+<rect x="650" y="160" width="140" height="60" rx="10" ry="10" fill="url(#grad_input)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="720.0" y="180.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">Input Features</text><text x="720.0" y="200.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(17-D Vector)</text>
+<line x1="790" y1="190" x2="830" y2="190" stroke="#1976D2" stroke-width="3" marker-end="url(#arrow_blue)"/>
+<rect x="830" y="160" width="200" height="60" rx="10" ry="10" fill="url(#grad_input)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="930.0" y="180.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">Shared Global Trunk</text><text x="930.0" y="200.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(64-Dimensional Latent State)</text>
+<rect x="850" y="260" width="160" height="60" rx="10" ry="10" fill="url(#grad_dag)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="930.0" y="280.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">Diabetes Head</text><text x="930.0" y="300.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(32-D Hidden Layer)</text>
+<path d="M 930 220 C 980 220, 800 290, 850 290" fill="none" stroke="#1976D2" stroke-width="3" marker-end="url(#arrow_blue)"/>
+<rect x="850" y="360" width="160" height="60" rx="10" ry="10" fill="url(#grad_dag)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="930.0" y="380.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">CHF Head</text><text x="930.0" y="400.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(32-D Hidden Layer)</text>
+<path d="M 930 220 C 980 220, 800 390, 850 390" fill="none" stroke="#1976D2" stroke-width="3" marker-end="url(#arrow_blue)"/>
+<rect x="850" y="460" width="160" height="60" rx="10" ry="10" fill="url(#grad_dag)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="930.0" y="480.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">Sepsis Head</text><text x="930.0" y="500.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(32-D Hidden Layer)</text>
+<path d="M 930 220 C 980 220, 800 490, 850 490" fill="none" stroke="#1976D2" stroke-width="3" marker-end="url(#arrow_blue)"/>
+<rect x="850" y="560" width="160" height="60" rx="10" ry="10" fill="url(#grad_dag)" filter="url(#shadow)" stroke="#444" stroke-width="2"/><text x="930.0" y="580.0" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="#111" font-weight="bold">AKI Head</text><text x="930.0" y="600.0" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="#111" >(32-D Hidden Layer)</text>
+<path d="M 930 220 C 980 220, 800 590, 850 590" fill="none" stroke="#1976D2" stroke-width="3" marker-end="url(#arrow_blue)"/>
+<line x1="930" y1="320" x2="930" y2="360" stroke="#1976D2" stroke-width="3" marker-end="url(#arrow_blue)"/><rect x="850.0" y="325.0" width="160" height="30" fill="white" opacity="0.9" rx="5"/><text x="930.0" y="340.0" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="bold" fill="#1976D2">32-D Dense Context</text>
+<line x1="930" y1="420" x2="930" y2="460" stroke="#1976D2" stroke-width="3" marker-end="url(#arrow_blue)"/><rect x="850.0" y="425.0" width="160" height="30" fill="white" opacity="0.9" rx="5"/><text x="930.0" y="440.0" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="bold" fill="#1976D2">32-D Dense Context</text>
+<line x1="930" y1="520" x2="930" y2="560" stroke="#1976D2" stroke-width="3" marker-end="url(#arrow_blue)"/><rect x="850.0" y="525.0" width="160" height="30" fill="white" opacity="0.9" rx="5"/><text x="930.0" y="540.0" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="bold" fill="#1976D2">32-D Dense Context</text>
+</svg>

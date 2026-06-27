@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 850" width="1000" height="850" style="background-color: #ffffff; font-family: Arial, sans-serif;">
+<defs>
+<marker id="arrow_blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#1E88E5" />
+</marker>
+<linearGradient id="grad_chronic" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#E8F5E9" /><stop offset="100%" stop-color="#C8E6C9" /></linearGradient>
+<linearGradient id="grad_acute" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFEBEE" /><stop offset="100%" stop-color="#FFCDD2" /></linearGradient>
+<linearGradient id="grad_link" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFFDE7" /><stop offset="100%" stop-color="#FFF9C4" /></linearGradient>
+</defs>
+<text x="500" y="40" text-anchor="middle" font-size="26" font-weight="bold" fill="#1A237E">Clinical Comorbidity Cascade (Simple Explanation)</text>
+<text x="500" y="65" text-anchor="middle" font-size="14" fill="#555">How chronic conditions sequentially trigger acute physiological failure</text>
+<rect x="50" y="100" width="340" height="130" rx="12" ry="12" fill="url(#grad_chronic)" stroke="#37474F" stroke-width="2"/>
+<text x="70" y="130" font-size="12" font-weight="bold" fill="#555" letter-spacing="1">CHRONIC METABOLIC</text>
+<text x="70" y="155" font-size="20" font-weight="bold" fill="#212121">1. Diabetes</text>
+<text x="70" y="185" font-size="13" fill="#37474F">- High blood sugar damages blood vessels.</text>
+<text x="70" y="205" font-size="13" fill="#37474F">- Makes arteries stiff and narrow over time.</text>
+<rect x="50" y="290" width="340" height="130" rx="12" ry="12" fill="url(#grad_chronic)" stroke="#37474F" stroke-width="2"/>
+<text x="70" y="320" font-size="12" font-weight="bold" fill="#555" letter-spacing="1">CHRONIC CARDIOVASCULAR</text>
+<text x="70" y="345" font-size="20" font-weight="bold" fill="#212121">2. Congestive Heart Failure</text>
+<text x="70" y="375" font-size="13" fill="#37474F">- The heart becomes too weak to pump properly.</text>
+<text x="70" y="395" font-size="13" fill="#37474F">- Causes fluid to pool inside the lungs and body.</text>
+<rect x="50" y="480" width="340" height="130" rx="12" ry="12" fill="url(#grad_acute)" stroke="#37474F" stroke-width="2"/>
+<text x="70" y="510" font-size="12" font-weight="bold" fill="#555" letter-spacing="1">ACUTE SYSTEMIC INFECTION</text>
+<text x="70" y="535" font-size="20" font-weight="bold" fill="#212121">3. Sepsis</text>
+<text x="70" y="565" font-size="13" fill="#37474F">- A severe, body-wide response to infection.</text>
+<text x="70" y="585" font-size="13" fill="#37474F">- Causes blood pressure to drop dangerously low.</text>
+<rect x="50" y="670" width="340" height="130" rx="12" ry="12" fill="url(#grad_acute)" stroke="#37474F" stroke-width="2"/>
+<text x="70" y="700" font-size="12" font-weight="bold" fill="#555" letter-spacing="1">ACUTE SECONDARY FAILURE</text>
+<text x="70" y="725" font-size="20" font-weight="bold" fill="#212121">4. Acute Kidney Injury</text>
+<text x="70" y="755" font-size="13" fill="#37474F">- Kidneys suddenly stop filtering waste.</text>
+<text x="70" y="775" font-size="13" fill="#37474F">- Spikes toxic waste markers (Creatinine).</text>
+<line x1="220" y1="230" x2="220" y2="280" stroke="#1E88E5" stroke-width="3" marker-end="url(#arrow_blue)"/>
+<rect x="450" y="115" width="360" height="105" rx="8" ry="8" fill="url(#grad_link)" stroke="#FBC02D" stroke-width="1.5"/>
+<text x="465" y="140" font-size="13" font-weight="bold" fill="#F57F17">CONNECTION 1: DIABETES TO CHF</text>
+<text x="465" y="163" font-size="12.5" fill="#3E2723">High blood sugar damages and stiffens blood vessels.</text>
+<text x="465" y="181" font-size="12.5" fill="#3E2723">The heart must pump much harder to push blood through,</text>
+<text x="465" y="199" font-size="12.5" fill="#3E2723">which eventually weakens the heart muscle (CHF).</text>
+<line x1="220" y1="420" x2="220" y2="470" stroke="#1E88E5" stroke-width="3" marker-end="url(#arrow_blue)"/>
+<rect x="450" y="305" width="360" height="105" rx="8" ry="8" fill="url(#grad_link)" stroke="#FBC02D" stroke-width="1.5"/>
+<text x="465" y="330" font-size="13" font-weight="bold" fill="#F57F17">CONNECTION 2: CHF TO SEPSIS</text>
+<text x="465" y="353" font-size="12.5" fill="#3E2723">A weak heart causes fluid to pool in the lungs.</text>
+<text x="465" y="371" font-size="12.5" fill="#3E2723">This trapped fluid is a breeding ground for bacteria,</text>
+<text x="465" y="389" font-size="12.5" fill="#3E2723">making it easy for standard lung infections to spread body-wide.</text>
+<line x1="220" y1="610" x2="220" y2="660" stroke="#1E88E5" stroke-width="3" marker-end="url(#arrow_blue)"/>
+<rect x="450" y="495" width="360" height="105" rx="8" ry="8" fill="url(#grad_link)" stroke="#FBC02D" stroke-width="1.5"/>
+<text x="465" y="520" font-size="13" font-weight="bold" fill="#F57F17">CONNECTION 3: SEPSIS TO AKI</text>
+<text x="465" y="543" font-size="12.5" fill="#3E2723">Sepsis causes a sudden, severe drop in blood pressure.</text>
+<text x="465" y="561" font-size="12.5" fill="#3E2723">Without enough pressure, blood flow to the kidneys collapses,</text>
+<text x="465" y="579" font-size="12.5" fill="#3E2723">starving kidney cells of oxygen and causing failure.</text>
+<path d="M 410 165 L 410 545" fill="none" stroke="#B0BEC5" stroke-width="2" stroke-dasharray="5,5"/>
+</svg>
