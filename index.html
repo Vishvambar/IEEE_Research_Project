@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,42 @@
     <!-- Tailwind CSS for minimalist, clean styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- MathJax for rendering the math symbols properly -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .slide { display: none; }
-        .slide.active { display: flex; animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        body {
+            font-family: 'Inter', sans-serif;
         }
+
+        .slide {
+            display: none;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Custom image placeholder styling in case local images aren't found yet */
-        img { background-color: #f8fafc; color: #64748b; font-size: 0.875rem; text-align: center; }
+        img {
+            background-color: #f8fafc;
+            color: #64748b;
+            font-size: 0.875rem;
+            text-align: center;
+        }
     </style>
     <script>
         tailwind.config = {
@@ -34,24 +58,27 @@
         }
     </script>
 </head>
+
 <body class="bg-slate-50 text-slate-800 overflow-hidden h-screen w-screen select-none">
 
     <!-- Presentation Container -->
     <div id="presentation" class="relative w-full h-full flex flex-col p-12 max-w-7xl mx-auto">
-        
+
         <!-- Slide 1: Title Slide -->
         <section class="slide active flex-col items-center justify-center h-full text-center">
-            <div class="inline-block px-4 py-1 mb-6 rounded-full bg-medical-light text-medical-dark font-semibold tracking-wide text-sm">
-                Project Presentation
+            <div
+                class="inline-block px-4 py-1 mb-6 rounded-full bg-medical-light text-medical-dark font-semibold tracking-wide text-sm">
+                Research Project Presentation
             </div>
             <h1 class="text-5xl font-bold mb-6 text-slate-800 leading-tight">
-                Clinivora: Multi-Disease Early Screening <br>
+                Multi-Disease Early Screening <br>
                 <span class="text-medical">Using Deep Multi-Task Learning</span>
             </h1>
             <div class="w-24 h-1 bg-medical mb-10 mx-auto rounded-full"></div>
-            
+
             <div class="text-lg text-slate-600 mb-8 space-y-2">
-                <p><strong class="text-slate-800">Team:</strong> Vishvambar Ramesh Udavant, Ish Prafull Chaniyara, Sagar Shahgond</p>
+                <p><strong class="text-slate-800">Team:</strong> Vishvambar Ramesh Udavant, Ish Prafull Chaniyara, Sagar
+                    Shahgond</p>
                 <p><strong class="text-slate-800">Faculty Guide:</strong> Dr. Ranjana Kale</p>
             </div>
             <p class="text-slate-500 font-medium">MIT ADT University, Pune</p>
@@ -61,30 +88,37 @@
         <section class="slide flex-col justify-center h-full">
             <h2 class="text-4xl font-bold mb-2 text-medical-dark">The Clinical Problem</h2>
             <p class="text-slate-500 mb-10 text-xl font-light">Why we built Clinivora</p>
-            
+
             <div class="grid grid-cols-2 gap-12 items-center h-full">
                 <div class="space-y-6 text-lg">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
                         <h3 class="font-bold text-slate-800 flex items-center mb-2">
                             <span class="text-medical mr-2">1.</span> Alarm Fatigue
                         </h3>
-                        <p class="text-slate-600 text-base">In the ICU, monitors are constantly beeping. Most are false alarms because traditional systems look at diseases (Sepsis, AKI, CHF, Diabetes) separately, ignoring how they are connected.</p>
+                        <p class="text-slate-600 text-base">In the ICU, monitors are constantly beeping. Most are false
+                            alarms because traditional systems look at diseases (Sepsis, AKI, CHF, Diabetes) separately,
+                            ignoring how they are connected.</p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
                         <h3 class="font-bold text-slate-800 flex items-center mb-2">
                             <span class="text-medical mr-2">2.</span> The Chain Reaction
                         </h3>
-                        <p class="text-slate-600 text-base">A patient's baseline health (Diabetes) weakens their body, making them more susceptible to infection (Sepsis), which then damages their kidneys (AKI).</p>
+                        <p class="text-slate-600 text-base">A patient's baseline health (Diabetes) weakens their body,
+                            making them more susceptible to infection (Sepsis), which then damages their kidneys (AKI).
+                        </p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
                         <h3 class="font-bold text-slate-800 flex items-center mb-2">
                             <span class="text-medical mr-2">3.</span> The Issue with Old Models
                         </h3>
-                        <p class="text-slate-600 text-base">Separate models (like XGBoost) only pass a simple "Yes/No" or a single percentage to the next model, losing all detailed clinical context.</p>
+                        <p class="text-slate-600 text-base">Separate models (like XGBoost) only pass a simple "Yes/No"
+                            or a single percentage to the next model, losing all detailed clinical context.</p>
                     </div>
                 </div>
-                <div class="flex justify-center items-center h-full bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
-                    <img src="results/Disease_Cascade_Diagram.svg" alt="Disease Cascade Diagram" class="max-h-[500px] object-contain">
+                <div
+                    class="flex justify-center items-center h-full bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+                    <img src="results/Disease_Cascade_Diagram.svg" alt="Disease Cascade Diagram"
+                        class="max-h-[500px] object-contain">
                 </div>
             </div>
         </section>
@@ -93,23 +127,34 @@
         <section class="slide flex-col justify-center h-full">
             <h2 class="text-4xl font-bold mb-2 text-medical-dark">Our Proposed Solution</h2>
             <p class="text-slate-500 mb-10 text-xl font-light">The PyTorch DAG Architecture</p>
-            
+
             <div class="grid grid-cols-2 gap-12 items-center h-full">
-                <div class="flex justify-center items-center h-full bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
-                    <img src="results/Architecture_Diagram.svg" alt="Architecture Diagram" class="max-h-[500px] object-contain">
+                <div
+                    class="flex justify-center items-center h-full bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+                    <img src="results/Architecture_Diagram.svg" alt="Architecture Diagram"
+                        class="max-h-[500px] object-contain">
                 </div>
                 <div class="space-y-8 text-lg">
                     <div>
                         <h3 class="font-bold text-xl text-slate-800 mb-2">Causal DAG Architecture</h3>
-                        <p class="text-slate-600">We built a network using PyTorch structured as a Directed Acyclic Graph (DAG) that flows like a timeline: <br> <code class="bg-slate-100 text-medical-dark px-2 py-1 rounded mt-2 inline-block">Diabetes &rarr; CHF &rarr; Sepsis &rarr; AKI</code></p>
+                        <p class="text-slate-600">We built a network using PyTorch structured as a Directed Acyclic
+                            Graph (DAG) that flows like a timeline: <br> <code
+                                class="bg-slate-100 text-medical-dark px-2 py-1 rounded mt-2 inline-block">Diabetes &rarr; CHF &rarr; Sepsis &rarr; AKI</code>
+                        </p>
                     </div>
                     <div>
                         <h3 class="font-bold text-xl text-slate-800 mb-2">Detailed Context Sharing</h3>
-                        <p class="text-slate-600">Instead of passing a single "Yes/No", our network passes a <strong>32-dimensional hidden vector</strong> (a bundle of 32 numbers representing the detailed patient state).</p>
+                        <p class="text-slate-600">Instead of passing a single "Yes/No", our network passes a
+                            <strong>32-dimensional hidden vector</strong> (a bundle of 32 numbers representing the
+                            detailed patient state).
+                        </p>
                     </div>
                     <div>
-                        <h3 class="font-bold text-xl text-slate-800 mb-2">The Stop-Gradient (<code class="text-medical">.detach()</code>) Trick</h3>
-                        <p class="text-slate-600">Normally, downstream errors (AKI) ruin upstream predictions (Diabetes). We used <code class="bg-slate-100 px-1 rounded">.detach()</code> to block backward error flow while letting clinical context flow forward.</p>
+                        <h3 class="font-bold text-xl text-slate-800 mb-2">The Stop-Gradient (<code
+                                class="text-medical">.detach()</code>) Trick</h3>
+                        <p class="text-slate-600">Normally, downstream errors (AKI) ruin upstream predictions
+                            (Diabetes). We used <code class="bg-slate-100 px-1 rounded">.detach()</code> to block
+                            backward error flow while letting clinical context flow forward.</p>
                     </div>
                 </div>
             </div>
@@ -118,27 +163,37 @@
         <!-- Slide 4: Dataset & Experimental Setup -->
         <section class="slide flex-col justify-center h-full">
             <h2 class="text-4xl font-bold mb-12 text-center text-medical-dark">Dataset & Experimental Setup</h2>
-            
+
             <div class="grid grid-cols-3 gap-8">
                 <!-- Tile 1 -->
                 <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-medical text-center">
-                    <div class="w-16 h-16 bg-medical-light text-medical rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">📊</div>
+                    <div
+                        class="w-16 h-16 bg-medical-light text-medical rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        📊</div>
                     <h3 class="text-2xl font-bold mb-4 text-slate-800">The Data</h3>
-                    <p class="text-slate-600"><strong>52,378</strong> adult ICU patient records from the real-world <strong>MIMIC-IV</strong> database.</p>
+                    <p class="text-slate-600"><strong>52,378</strong> adult ICU patient records from the real-world
+                        <strong>MIMIC-IV</strong> database.
+                    </p>
                 </div>
-                
+
                 <!-- Tile 2 -->
                 <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-medical text-center">
-                    <div class="w-16 h-16 bg-medical-light text-medical rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🧬</div>
+                    <div
+                        class="w-16 h-16 bg-medical-light text-medical rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        🧬</div>
                     <h3 class="text-2xl font-bold mb-4 text-slate-800">The Features</h3>
-                    <p class="text-slate-600">17 simple features: Age, Gender, and vitals (HR, BP, RR) along with their changes (Min, Max, Avg, Range).</p>
+                    <p class="text-slate-600">17 simple features: Age, Gender, and vitals (HR, BP, RR) along with their
+                        changes (Min, Max, Avg, Range).</p>
                 </div>
 
                 <!-- Tile 3 -->
                 <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-medical text-center">
-                    <div class="w-16 h-16 bg-medical-light text-medical rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🎯</div>
+                    <div
+                        class="w-16 h-16 bg-medical-light text-medical rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        🎯</div>
                     <h3 class="text-2xl font-bold mb-4 text-slate-800">Focal Loss</h3>
-                    <p class="text-slate-600">Standard training fails on mostly healthy datasets. We used Focal Loss to force the model to focus on rare, hard-to-predict sick patients.</p>
+                    <p class="text-slate-600">Standard training fails on mostly healthy datasets. We used Focal Loss to
+                        force the model to focus on rare, hard-to-predict sick patients.</p>
                 </div>
             </div>
         </section>
@@ -147,31 +202,40 @@
         <section class="slide flex-col justify-center h-full">
             <h2 class="text-4xl font-bold mb-2 text-medical-dark">Results & Calibration</h2>
             <p class="text-slate-500 mb-10 text-xl font-light">Making it safe for the ICU</p>
-            
-            <div class="grid grid-cols-12 gap-8 items-center h-full bg-white rounded-2xl shadow-sm border border-slate-200 p-10">
+
+            <div
+                class="grid grid-cols-12 gap-8 items-center h-full bg-white rounded-2xl shadow-sm border border-slate-200 p-10">
                 <div class="col-span-5 border-r border-slate-200 pr-8">
                     <h3 class="font-bold text-2xl text-slate-800 mb-4">Avoiding False Alarms</h3>
-                    <p class="text-slate-600 mb-6">We ran a strict safety check to prevent alarm fatigue. The model must meet two strict thresholds simultaneously:</p>
+                    <p class="text-slate-600 mb-6">We ran a strict safety check to prevent alarm fatigue. The model must
+                        meet two strict thresholds simultaneously:</p>
                     <ul class="space-y-4">
-                        <li class="flex items-center text-lg"><span class="w-4 h-4 rounded-full bg-medical mr-3"></span> High Accuracy (Precision \(\ge\) 0.65)</li>
-                        <li class="flex items-center text-lg"><span class="w-4 h-4 rounded-full bg-medical mr-3"></span> Catch Sick Patients (Recall \(\ge\) 0.50)</li>
+                        <li class="flex items-center text-lg"><span class="w-4 h-4 rounded-full bg-medical mr-3"></span>
+                            High Accuracy (Precision \(\ge\) 0.65)</li>
+                        <li class="flex items-center text-lg"><span class="w-4 h-4 rounded-full bg-medical mr-3"></span>
+                            Catch Sick Patients (Recall \(\ge\) 0.50)</li>
                     </ul>
                 </div>
-                
+
                 <div class="col-span-7 pl-8">
                     <h3 class="font-bold text-2xl text-slate-800 mb-6">The Final Scores</h3>
                     <div class="space-y-4">
-                        <div class="flex justify-between items-center p-3 rounded bg-slate-50 text-slate-400 border border-slate-100">
+                        <div
+                            class="flex justify-between items-center p-3 rounded bg-slate-50 text-slate-400 border border-slate-100">
                             <span>Diabetes</span><span>Precision 0.374 (Needs historical data)</span>
                         </div>
-                        <div class="flex justify-between items-center p-3 rounded bg-slate-50 text-slate-400 border border-slate-100">
+                        <div
+                            class="flex justify-between items-center p-3 rounded bg-slate-50 text-slate-400 border border-slate-100">
                             <span>CHF</span><span>Precision 0.403 (Needs historical data)</span>
                         </div>
-                        <div class="flex justify-between items-center p-3 rounded bg-slate-50 text-slate-400 border border-slate-100">
+                        <div
+                            class="flex justify-between items-center p-3 rounded bg-slate-50 text-slate-400 border border-slate-100">
                             <span>Sepsis</span><span>Precision 0.411 (Needs historical data)</span>
                         </div>
-                        <div class="flex justify-between items-center p-6 rounded-xl bg-medical-light text-medical-dark font-bold border border-medical shadow-sm transform scale-105 transition-transform">
-                            <span class="text-2xl">AKI (Kidney Injury)</span><span class="text-2xl">Precision 0.724 ✨</span>
+                        <div
+                            class="flex justify-between items-center p-6 rounded-xl bg-medical-light text-medical-dark font-bold border border-medical shadow-sm transform scale-105 transition-transform">
+                            <span class="text-2xl">AKI (Kidney Injury)</span><span class="text-2xl">Precision 0.724
+                                ✨</span>
                         </div>
                         <p class="text-sm text-center text-medical font-medium mt-2">Viable & Highly Accurate!</p>
                     </div>
@@ -183,24 +247,30 @@
         <section class="slide flex-col justify-center h-full">
             <h2 class="text-4xl font-bold mb-2 text-medical-dark">Result Analysis</h2>
             <p class="text-slate-500 mb-10 text-xl font-light">XGBoost vs. PyTorch DAG</p>
-            
+
             <div class="grid grid-cols-2 gap-12 items-center">
                 <div class="space-y-8 text-lg">
                     <div>
                         <h3 class="font-bold text-xl text-slate-800 mb-2">Performance Comparison</h3>
-                        <p class="text-slate-600">On the exact same dataset, the PyTorch DAG model improved AKI prediction precision from <strong>0.700</strong> (XGBoost) to <strong class="text-medical text-2xl">0.719</strong>.</p>
+                        <p class="text-slate-600">On the exact same dataset, the PyTorch DAG model improved AKI
+                            prediction precision from <strong>0.700</strong> (XGBoost) to <strong
+                                class="text-medical text-2xl">0.719</strong>.</p>
                     </div>
                     <div>
                         <h3 class="font-bold text-xl text-slate-800 mb-2">Why did the DAG win?</h3>
-                        <p class="text-slate-600">The AKI head looks at the 32-D context vector flowing from Sepsis, CHF, and Diabetes, making a much smarter decision than isolated trees.</p>
+                        <p class="text-slate-600">The AKI head looks at the 32-D context vector flowing from Sepsis,
+                            CHF, and Diabetes, making a much smarter decision than isolated trees.</p>
                     </div>
                     <div class="p-5 bg-orange-50 border border-orange-100 rounded-xl text-orange-800 text-sm">
                         <strong class="block mb-1 text-base">Honest Limitation: Why did other diseases fail?</strong>
-                        An AI cannot make guesses out of thin air. You cannot predict long-term Diabetes or CHF using only 24 hours of ICU heart rates. You need long-term medical history.
+                        An AI cannot make guesses out of thin air. You cannot predict long-term Diabetes or CHF using
+                        only 24 hours of ICU heart rates. You need long-term medical history.
                     </div>
                 </div>
-                <div class="flex justify-center items-center h-full bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
-                    <img src="results/Evolution_Diagram.svg" alt="Evolution Diagram" class="max-h-[500px] object-contain">
+                <div
+                    class="flex justify-center items-center h-full bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+                    <img src="results/Evolution_Diagram.svg" alt="Evolution Diagram"
+                        class="max-h-[500px] object-contain">
                 </div>
             </div>
         </section>
@@ -209,31 +279,38 @@
         <section class="slide flex-col justify-center h-full">
             <h2 class="text-4xl font-bold mb-2 text-medical-dark">Explainable AI (Captum)</h2>
             <p class="text-slate-500 mb-10 text-xl font-light">Proving the AI thinks like a doctor</p>
-            
+
             <div class="grid grid-cols-2 gap-12 items-center h-full">
                 <div class="flex flex-col justify-center h-full bg-slate-900 rounded-2xl shadow-lg p-2 overflow-hidden">
                     <!-- Added a dark background to make typical attributions plots pop -->
-                    <img src="results/Captum_Attributions_AKI.png" alt="Captum Attributions for AKI" class="rounded-xl object-contain max-h-[450px]">
+                    <img src="results/Captum_Attributions_AKI.png" alt="Captum Attributions for AKI"
+                        class="rounded-xl object-contain max-h-[450px]">
                 </div>
                 <div class="space-y-6">
                     <div>
                         <h3 class="font-bold text-2xl text-slate-800 mb-2">Opening the Black Box</h3>
-                        <p class="text-slate-600 text-lg">Doctors will not trust a model if they don't know <em>why</em> it made a prediction. We used <strong>PyTorch Captum</strong> to calculate feature importance.</p>
+                        <p class="text-slate-600 text-lg">Doctors will not trust a model if they don't know <em>why</em>
+                            it made a prediction. We used <strong>PyTorch Captum</strong> to calculate feature
+                            importance.</p>
                     </div>
-                    
+
                     <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                        <h4 class="font-bold text-medical-dark mb-4 uppercase tracking-wider text-sm">Top 5 Features for AKI</h4>
+                        <h4 class="font-bold text-medical-dark mb-4 uppercase tracking-wider text-sm">Top 5 Features for
+                            AKI</h4>
                         <ol class="list-decimal list-inside space-y-3 text-slate-700 font-medium">
-                            <li><span class="bg-medical-light px-2 py-1 rounded text-medical-dark">Creatinine Max</span> <span class="text-sm font-normal text-slate-500 ml-2">(Standard kidney biomarker)</span></li>
+                            <li><span class="bg-medical-light px-2 py-1 rounded text-medical-dark">Creatinine Max</span>
+                                <span class="text-sm font-normal text-slate-500 ml-2">(Standard kidney biomarker)</span>
+                            </li>
                             <li><span class="bg-slate-100 px-2 py-1 rounded">Systolic BP Min</span></li>
                             <li><span class="bg-slate-100 px-2 py-1 rounded">Systolic BP Avg</span></li>
                             <li><span class="bg-slate-100 px-2 py-1 rounded">Gender</span></li>
                             <li><span class="bg-slate-100 px-2 py-1 rounded">SpO2 Min</span></li>
                         </ol>
                     </div>
-                    
+
                     <p class="text-slate-600 border-l-4 border-medical pl-4 italic">
-                        <strong>Medical Validation:</strong> The model naturally learned that Creatinine and low blood pressure (BP Min) cause kidney failure, proving it learned real medicine.
+                        <strong>Medical Validation:</strong> The model naturally learned that Creatinine and low blood
+                        pressure (BP Min) cause kidney failure, proving it learned real medicine.
                     </p>
                 </div>
             </div>
@@ -245,26 +322,35 @@
                 <div class="col-span-1 space-y-8 z-10">
                     <h2 class="text-4xl font-bold mb-2 text-medical-dark">The Clinivora Dashboard</h2>
                     <p class="text-slate-500 mb-6 text-xl font-light">Live Demo Overview</p>
-                    
-                    <p class="text-slate-700 text-lg">We didn't just build code; we built a working, real-time website dashboard.</p>
-                    
+
+                    <p class="text-slate-700 text-lg">We didn't just build code; we built a working, real-time website
+                        dashboard.</p>
+
                     <div class="space-y-6">
                         <div class="border-l-2 border-medical pl-4">
                             <h3 class="font-bold text-slate-800">Frontend UI</h3>
-                            <p class="text-slate-600">Built with <strong>React</strong>. Features a premium dark mode UI and dynamic medical risk gauges.</p>
+                            <p class="text-slate-600">Built with <strong>React</strong>. Features a premium dark mode UI
+                                and dynamic medical risk gauges.</p>
                         </div>
                         <div class="border-l-2 border-medical pl-4">
                             <h3 class="font-bold text-slate-800">Backend API</h3>
-                            <p class="text-slate-600">Built with <strong>FastAPI</strong>, serving our trained PyTorch DAG model in real-time with sub-second latency.</p>
+                            <p class="text-slate-600">Built with <strong>FastAPI</strong>, serving our trained PyTorch
+                                DAG model in real-time with sub-second latency.</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Bleed Image Right Layout -->
                 <div class="col-span-2 h-full flex items-center relative">
-                    <div class="absolute inset-0 bg-slate-200 rounded-l-3xl overflow-hidden shadow-2xl flex items-center justify-center border border-slate-300">
+                    <div
+                        class="absolute inset-0 bg-slate-200 rounded-l-3xl overflow-hidden shadow-2xl flex items-center justify-center border border-slate-300">
                         <div class="text-slate-400 flex flex-col items-center">
-                            <svg class="w-16 h-16 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <svg class="w-16 h-16 mb-4 opacity-50" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
                             <span class="text-xl font-medium">[Show Live Demo or Screenshot Here]</span>
                         </div>
                     </div>
@@ -276,37 +362,49 @@
         <section class="slide flex-col justify-center h-full text-center">
             <h2 class="text-4xl font-bold mb-4 text-medical-dark">Future Work (V2 Roadmap)</h2>
             <p class="text-slate-500 mb-16 text-xl font-light">Making the system fully ready for hospital deployment</p>
-            
+
             <div class="flex justify-between items-start relative max-w-5xl mx-auto w-full">
                 <!-- Timeline Line -->
                 <div class="absolute top-6 left-10 right-10 h-1 bg-slate-200 z-0"></div>
-                
+
                 <!-- Step 1 -->
                 <div class="relative z-10 flex flex-col items-center w-1/4 px-4">
-                    <div class="w-12 h-12 rounded-full bg-medical text-white font-bold flex items-center justify-center text-xl shadow-lg mb-6 border-4 border-white">1</div>
+                    <div
+                        class="w-12 h-12 rounded-full bg-medical text-white font-bold flex items-center justify-center text-xl shadow-lg mb-6 border-4 border-white">
+                        1</div>
                     <h3 class="font-bold text-slate-800 mb-2">Multi-Parent DAG</h3>
-                    <p class="text-sm text-slate-500">Connect Diabetes, CHF, and Sepsis in parallel to feed into AKI for realistic comorbidity.</p>
+                    <p class="text-sm text-slate-500">Connect Diabetes, CHF, and Sepsis in parallel to feed into AKI for
+                        realistic comorbidity.</p>
                 </div>
-                
+
                 <!-- Step 2 -->
                 <div class="relative z-10 flex flex-col items-center w-1/4 px-4">
-                    <div class="w-12 h-12 rounded-full bg-medical text-white font-bold flex items-center justify-center text-xl shadow-lg mb-6 border-4 border-white">2</div>
+                    <div
+                        class="w-12 h-12 rounded-full bg-medical text-white font-bold flex items-center justify-center text-xl shadow-lg mb-6 border-4 border-white">
+                        2</div>
                     <h3 class="font-bold text-slate-800 mb-2">Gradient Surgery</h3>
-                    <p class="text-sm text-slate-500">Evaluate PCGrad to resolve conflicting task gradients instead of blocking them.</p>
+                    <p class="text-sm text-slate-500">Evaluate PCGrad to resolve conflicting task gradients instead of
+                        blocking them.</p>
                 </div>
-                
+
                 <!-- Step 3 -->
                 <div class="relative z-10 flex flex-col items-center w-1/4 px-4">
-                    <div class="w-12 h-12 rounded-full bg-medical text-white font-bold flex items-center justify-center text-xl shadow-lg mb-6 border-4 border-white">3</div>
+                    <div
+                        class="w-12 h-12 rounded-full bg-medical text-white font-bold flex items-center justify-center text-xl shadow-lg mb-6 border-4 border-white">
+                        3</div>
                     <h3 class="font-bold text-slate-800 mb-2">Graph Learning</h3>
-                    <p class="text-sm text-slate-500">Let the model automatically discover disease links using Graph Neural Networks (GNNs).</p>
+                    <p class="text-sm text-slate-500">Let the model automatically discover disease links using Graph
+                        Neural Networks (GNNs).</p>
                 </div>
-                
+
                 <!-- Step 4 -->
                 <div class="relative z-10 flex flex-col items-center w-1/4 px-4">
-                    <div class="w-12 h-12 rounded-full bg-medical text-white font-bold flex items-center justify-center text-xl shadow-lg mb-6 border-4 border-white">4</div>
+                    <div
+                        class="w-12 h-12 rounded-full bg-medical text-white font-bold flex items-center justify-center text-xl shadow-lg mb-6 border-4 border-white">
+                        4</div>
                     <h3 class="font-bold text-slate-800 mb-2">Time-Series</h3>
-                    <p class="text-sm text-slate-500">Move from statistical ranges to raw sequence data using LSTMs or Transformers.</p>
+                    <p class="text-sm text-slate-500">Move from statistical ranges to raw sequence data using LSTMs or
+                        Transformers.</p>
                 </div>
             </div>
         </section>
@@ -320,14 +418,20 @@
 
         <!-- Navigation Controls -->
         <div class="absolute bottom-8 right-8 flex space-x-4">
-            <button onclick="prevSlide()" class="bg-white border border-slate-200 text-slate-600 hover:text-medical hover:border-medical p-3 rounded-full shadow-sm transition-all focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <button onclick="prevSlide()"
+                class="bg-white border border-slate-200 text-slate-600 hover:text-medical hover:border-medical p-3 rounded-full shadow-sm transition-all focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
             </button>
-            <button onclick="nextSlide()" class="bg-white border border-slate-200 text-slate-600 hover:text-medical hover:border-medical p-3 rounded-full shadow-sm transition-all focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <button onclick="nextSlide()"
+                class="bg-white border border-slate-200 text-slate-600 hover:text-medical hover:border-medical p-3 rounded-full shadow-sm transition-all focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
             </button>
         </div>
-        
+
         <!-- Slide Progress Indicator -->
         <div class="absolute bottom-8 left-12 text-slate-400 font-medium tracking-widest text-sm" id="slideCounter">
             01 / 10
@@ -342,7 +446,7 @@
 
         function updateSlide() {
             slides.forEach((slide, index) => {
-                if(index === currentSlide) {
+                if (index === currentSlide) {
                     slide.classList.add('active');
                 } else {
                     slide.classList.remove('active');
@@ -376,9 +480,10 @@
                 prevSlide();
             }
         });
-        
+
         // Initialize
         updateSlide();
     </script>
 </body>
+
 </html>
